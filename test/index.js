@@ -34,7 +34,7 @@ describe('Basic tests', function () {
 
 	it('Needs to create database', (done) => {
 
-		let structure = require('fs').readFileSync(__dirname + '/structure.sql').toString();
+		let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
 
 		ctrl = require('../index')(
 			cluster,
@@ -47,7 +47,7 @@ describe('Basic tests', function () {
 
 	it('Needs to create database and teardown the cluster', (done) => {
 
-		let structure = require('fs').readFileSync(__dirname + '/structure.sql').toString();
+		let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
 
 		ctrl = require('../index')(
 			cluster,
@@ -63,6 +63,28 @@ describe('Basic tests', function () {
 
 		});
 	});
+
+
+	it('Needs to create database with data', (done) => {
+
+		let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
+
+		ctrl = require('../index')(
+			cluster,
+			structure,
+			require('./data/file1.js')()
+		);
+		ctrl.setup((e) => {
+			if(e) {
+				return done(e);
+			}
+			ctrl.teardown((e) => {
+				done(e);
+			})
+
+		});
+	});
+
 
 	afterEach((done) => {
 		if(ctrl.teardown) {

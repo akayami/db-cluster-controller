@@ -47,17 +47,18 @@ module.exports = function(clusterConfig, structureString, dataArray) {
 								asyncCB(null, conn, result);
 							}
 						})
-					},
-					function(conn, result, asyncCB) {
-						conn.query('USE ??', [dbname], function(err, result) {
-							if (err) {
-								asyncCB(err);
-							} else {
-								asyncCB(null, conn, result);
-
-							}
-						})
 					}
+					//,
+					// function(conn, result, asyncCB) {
+					// 	conn.query('USE ??', [dbname], function(err, result) {
+					// 		if (err) {
+					// 			asyncCB(err);
+					// 		} else {
+					// 			asyncCB(null, conn, result);
+					//
+					// 		}
+					// 	})
+					// }
 				];
 
 				async.waterfall(tasks, function(err, result) {

@@ -1,6 +1,0 @@
-CREATE TABLE IF NOT EXISTS `test` (
-  `id` INT NOT NULL,
-  `name` VARCHAR(45) NOT NULL,
-  `address` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
