@@ -1,0 +1,22 @@
+{
+  "name": "db-cluster-controller",
+  "version": "1.0.0",
+  "description": "A small controller to create, shutdown and destory db-cluster databases",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.5.0",
+    "clone": "^2.1.1",
+    "db-cluster": "^0.0.6",
+    "mock-db-generator": "^0.0.8"
+  },
+  "devDependencies": {
+    "db-cluster-mysql": "^0.0.7",
+    "mocha": "^4.0.1",
+    "mysql": "^2.15.0"
+  }
+}
