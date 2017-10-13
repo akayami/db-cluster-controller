@@ -4,6 +4,8 @@ const clone = require('clone');
 
 module.exports = function(clusterConfig, structureString, dataArray) {
 
+	//dataArray = clone(dataArray);
+
 	let cfg = {
 		adapter: clusterConfig.adapter,
 		driver: clusterConfig.driver,
@@ -77,7 +79,7 @@ module.exports = function(clusterConfig, structureString, dataArray) {
 							String(structureString).split(';')
 						);
 						if(dataArray) {
-							mocker.make(dataArray);
+							mocker.make(clone(dataArray));
 						}
 						mocker.run(function(err) {
 							cb(err);

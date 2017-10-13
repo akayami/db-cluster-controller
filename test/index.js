@@ -1,5 +1,6 @@
 "use strict";
 const path = require('path');
+const async = require('async');
 
 let cluster = {
 	adapter: require('db-cluster-mysql'),
@@ -82,6 +83,58 @@ describe('Basic tests', function () {
 				done(e);
 			})
 
+		});
+	});
+
+
+	it('Needs to create database with data multiple times', (done) => {
+
+		let t = [];
+
+		t.push((done) => {
+
+			let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
+
+			ctrl = require('../index')(
+				cluster,
+				structure,
+				require('./data/file1.js')()
+			);
+			ctrl.setup((e) => {
+				if(e) {
+					return done(e);
+				}
+				ctrl.teardown((e) => {
+					done(e);
+				})
+
+			});
+
+		});
+
+		t.push((done) => {
+
+			let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
+
+			ctrl = require('../index')(
+				cluster,
+				structure,
+				require('./data/file1.js')()
+			);
+			ctrl.setup((e) => {
+				if(e) {
+					return done(e);
+				}
+				ctrl.teardown((e) => {
+					done(e);
+				})
+
+			});
+
+		});
+
+		async.series(t, (err, result) => {
+			done(err);
 		});
 	});
 
