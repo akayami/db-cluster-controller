@@ -4,8 +4,6 @@ const clone = require('clone');
 
 module.exports = function(clusterConfig, structureString, dataArray) {
 
-	//dataArray = clone(dataArray);
-
 	let cfg = {
 		adapter: clusterConfig.adapter,
 		driver: clusterConfig.driver,
