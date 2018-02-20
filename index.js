@@ -2,7 +2,7 @@
 const async = require('async');
 const clone = require('clone');
 
-module.exports = function(clusterConfig, structureString, dataArray) {
+module.exports = function (clusterConfig, structureString, dataArray) {
 
 	let cfg = {
 		adapter: clusterConfig.adapter,
@@ -17,21 +17,27 @@ module.exports = function(clusterConfig, structureString, dataArray) {
 	let cluster, cluster_real, internalConn, realConn;
 
 	return {
-		setup: function(cb) {
+		setup: (...args) => {
+			let cb, data;
+			cb = args.pop();
+			data = args.pop();
+			if (data) {
+				dataArray = data;
+			}
 			cluster = require('db-cluster')(cfg);
 			cluster_real = require('db-cluster')(clusterConfig);
-			cluster.master(function(err, conn) {
+			cluster.master(function (err, conn) {
 				if (err) {
 					return cb(err);
 				}
 				internalConn = conn;
 
 				let tasks = [
-					function(asyncCB) {
+					function (asyncCB) {
 						asyncCB(null, conn);
 					},
-					function(conn, asyncCB) {
-						conn.query('DROP DATABASE IF EXISTS ??', [dbname], function(err, result) {
+					function (conn, asyncCB) {
+						conn.query('DROP DATABASE IF EXISTS ??', [dbname], function (err, result) {
 							if (err) {
 								asyncCB(err);
 							} else {
@@ -39,8 +45,8 @@ module.exports = function(clusterConfig, structureString, dataArray) {
 							}
 						})
 					},
-					function(conn, asyncCB) {
-						conn.query('CREATE DATABASE ??', [dbname], function(err, result) {
+					function (conn, asyncCB) {
+						conn.query('CREATE DATABASE ??', [dbname], function (err, result) {
 							if (err) {
 								asyncCB(err);
 							} else {
@@ -61,11 +67,11 @@ module.exports = function(clusterConfig, structureString, dataArray) {
 					// }
 				];
 
-				async.waterfall(tasks, function(err, result) {
-					if(err) {
+				async.waterfall(tasks, function (err, result) {
+					if (err) {
 						return cb(err);
 					}
-					cluster_real.master(function(err, conn) {
+					cluster_real.master(function (err, conn) {
 						if (err) {
 							return cb(err);
 						}
@@ -76,24 +82,24 @@ module.exports = function(clusterConfig, structureString, dataArray) {
 							dbname,
 							String(structureString).split(';')
 						);
-						if(dataArray) {
+						if (dataArray) {
 							mocker.make(clone(dataArray));
 						}
-						mocker.run(function(err) {
+						mocker.run(function (err) {
 							cb(err);
 						})
 					})
 				})
 			});
 		},
-		shutdown: function(cb, wrapper) {
-			realConn.release(function(err) {
-				cluster.end(function(err) {
-					if(err) {
+		shutdown: function (cb, wrapper) {
+			realConn.release(function (err) {
+				cluster.end(function (err) {
+					if (err) {
 						return cb(err);
 					}
-					internalConn.release(function() {
-						cluster_real.end(function(err) {
+					internalConn.release(function () {
+						cluster_real.end(function (err) {
 							cb(err);
 						})
 					})
@@ -101,8 +107,8 @@ module.exports = function(clusterConfig, structureString, dataArray) {
 			})
 		},
 
-		teardown: function(cb, wrapper) {
-			if(!realConn) {
+		teardown: function (cb, wrapper) {
+			if (!realConn) {
 				return cb();
 			}
 			realConn.release(function (e) {

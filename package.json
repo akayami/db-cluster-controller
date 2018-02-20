@@ -15,8 +15,8 @@
     "mock-db-generator": "^0.0.8"
   },
   "devDependencies": {
-    "db-cluster-mysql": "^0.0.7",
-    "mocha": "^4.0.1",
+    "db-cluster-mysql": "^0.0.8",
+    "mocha": "^5.0.1",
     "mysql": "^2.15.0"
   }
 }
