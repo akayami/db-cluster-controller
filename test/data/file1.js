@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 module.exports = function(config = {}) {
 	return [{
 		test: [{
@@ -8,5 +8,5 @@ module.exports = function(config = {}) {
 			name: 'name2',
 			address: 'address2'
 		}]
-	}]
+	}];
 };

@@ -1,26 +1,25 @@
-"use strict";
+'use strict';
 const async = require('async');
 const clone = require('clone');
 
 module.exports = function (clusterConfig, structureString, dataArray) {
 
-	let cfg = {
+	const cfg = {
 		adapter: clusterConfig.adapter,
 		driver: clusterConfig.driver,
 		global: clone(clusterConfig.global),
 		pools: clusterConfig.pools
 	};
 
-	let dbname = cfg.global.database;
+	const dbname = cfg.global.database;
 	delete cfg.global.database;
 
 	let cluster, cluster_real, internalConn, realConn;
 
 	return {
 		setup: (...args) => {
-			let cb, data;
-			cb = args.pop();
-			data = args.pop();
+			const cb = args.pop();
+			const data = args.pop();
 			if (data) {
 				dataArray = data;
 			}
@@ -32,7 +31,7 @@ module.exports = function (clusterConfig, structureString, dataArray) {
 				}
 				internalConn = conn;
 
-				let tasks = [
+				const tasks = [
 					function (asyncCB) {
 						asyncCB(null, conn);
 					},
@@ -43,7 +42,7 @@ module.exports = function (clusterConfig, structureString, dataArray) {
 							} else {
 								asyncCB(null, conn);
 							}
-						})
+						});
 					},
 					function (conn, asyncCB) {
 						conn.query('CREATE DATABASE ??', [dbname], function (err, result) {
@@ -52,7 +51,7 @@ module.exports = function (clusterConfig, structureString, dataArray) {
 							} else {
 								asyncCB(null, conn, result);
 							}
-						})
+						});
 					}
 					//,
 					// function(conn, result, asyncCB) {
@@ -77,7 +76,7 @@ module.exports = function (clusterConfig, structureString, dataArray) {
 						}
 						realConn = conn;
 						//console.log(realConn);
-						let mocker = require('mock-db-generator')(
+						const mocker = require('mock-db-generator')(
 							realConn,
 							dbname,
 							String(structureString).split(';')
@@ -87,9 +86,9 @@ module.exports = function (clusterConfig, structureString, dataArray) {
 						}
 						mocker.run(function (err) {
 							cb(err);
-						})
-					})
-				})
+						});
+					});
+				});
 			});
 		},
 		shutdown: function (cb, wrapper) {
@@ -101,10 +100,10 @@ module.exports = function (clusterConfig, structureString, dataArray) {
 					internalConn.release(function () {
 						cluster_real.end(function (err) {
 							cb(err);
-						})
-					})
-				})
-			})
+						});
+					});
+				});
+			});
 		},
 
 		teardown: function (cb, wrapper) {
@@ -126,11 +125,11 @@ module.exports = function (clusterConfig, structureString, dataArray) {
 						internalConn.release(function () {
 							cluster.end(function (err) {
 								return cb(err);
-							})
-						})
+							});
+						});
 					});
-				})
-			})
+				});
+			});
 		}
-	}
+	};
 };

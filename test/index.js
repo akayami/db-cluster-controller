@@ -1,13 +1,13 @@
-"use strict";
+'use strict';
 const path = require('path');
 const async = require('async');
 
-let cluster = {
+const cluster = {
 	adapter: require('db-cluster-mysql'),
 	driver: require('mysql'),
 	global: {
 		user: 'root',
-		database: "db-cluster-controller-test-" + process.pid
+		database: 'db-cluster-controller-test-' + process.pid
 	},
 	pools: {
 		master: {},
@@ -35,7 +35,7 @@ describe('Basic tests', function () {
 
 	it('Needs to create database', (done) => {
 
-		let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
+		const structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
 
 		ctrl = require('../index')(
 			cluster,
@@ -48,7 +48,7 @@ describe('Basic tests', function () {
 
 	it('Needs to create database and teardown the cluster', (done) => {
 
-		let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
+		const structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
 
 		ctrl = require('../index')(
 			cluster,
@@ -60,7 +60,7 @@ describe('Basic tests', function () {
 			}
 			ctrl.teardown((e) => {
 				done(e);
-			})
+			});
 
 		});
 	});
@@ -68,7 +68,7 @@ describe('Basic tests', function () {
 
 	it('Needs to create database with data', (done) => {
 
-		let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
+		const structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
 
 		ctrl = require('../index')(
 			cluster,
@@ -81,7 +81,7 @@ describe('Basic tests', function () {
 			}
 			ctrl.teardown((e) => {
 				done(e);
-			})
+			});
 
 		});
 	});
@@ -89,11 +89,11 @@ describe('Basic tests', function () {
 
 	it('Needs to create database with data multiple times', (done) => {
 
-		let t = [];
+		const t = [];
 
 		t.push((done) => {
 
-			let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
+			const structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
 
 			ctrl = require('../index')(
 				cluster,
@@ -106,7 +106,7 @@ describe('Basic tests', function () {
 				}
 				ctrl.teardown((e) => {
 					done(e);
-				})
+				});
 
 			});
 
@@ -114,7 +114,7 @@ describe('Basic tests', function () {
 
 		t.push((done) => {
 
-			let structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
+			const structure = require('fs').readFileSync(__dirname + '/db/structure.sql').toString();
 
 			ctrl = require('../index')(
 				cluster,
@@ -127,7 +127,7 @@ describe('Basic tests', function () {
 				}
 				ctrl.teardown((e) => {
 					done(e);
-				})
+				});
 
 			});
 
@@ -151,9 +151,9 @@ describe('Basic tests', function () {
 				} else {
 					done();
 				}
-			})
+			});
 		} else {
 			done();
 		}
-	})
+	});
 });

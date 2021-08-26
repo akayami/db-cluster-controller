@@ -151,18 +151,18 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
 
-db-cluster-mysql@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/db-cluster-mysql/-/db-cluster-mysql-0.0.8.tgz#4bbad6b132f046bae6a647aa188cbfb61b9be809"
-  integrity sha1-S7rWsTLwRrrmpkeqGIy/thub6Ak=
+db-cluster-mysql@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/db-cluster-mysql/-/db-cluster-mysql-0.0.9.tgz#a1b993ec0b68c5f4cb22893876c3cfdf3d66a9c3"
+  integrity sha512-ZP8SDWx2ZkHTyLi6s6Dc9D+O9V9KBtRtWjCCOZwZbyjlakZLnil+j9wQts+Q3Zu9qeYJygx1i6mRpaarlJvogA==
 
-db-cluster@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/db-cluster/-/db-cluster-0.0.6.tgz#76b24e2ccd5c955900cbcfedf5a878923dfa1428"
-  integrity sha1-drJOLM1clVkAy8/t9ah4kj36FCg=
+db-cluster@^0.0.7:
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/db-cluster/-/db-cluster-0.0.7.tgz#3fc196dc2e7d66d57fdb1093595506fb2ca9173c"
+  integrity sha512-VOs0YIeOQqEBSdBZbT/COS5GgywscVQ3RdEIFJM1hG4cyE2L3DM7oQsVuvpU4bYvbvH3IkmU86kjwEZLckI7JQ==
   dependencies:
-    async "^1.5.2"
-    merge "^1.2.0"
+    async "^3.2.1"
+    merge "^2.1.1"
 
 debug@4.3.1:
   version "4.3.1"
@@ -354,10 +354,10 @@ log-symbols@4.1.0:
     chalk "^4.1.0"
     is-unicode-supported "^0.1.0"
 
-merge@^1.2.0:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/merge/-/merge-1.2.1.tgz#38bebf80c3220a8a487b6fcfb3941bb11720c145"
-  integrity sha512-VjFo4P5Whtj4vsLzsYBu5ayHhoHJ0UqNm7ibvShmbmoz7tGi0vXaoJbGdB+GmDMLUdg8DpQXEIeVDAe8MaABvQ==
+merge@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/merge/-/merge-2.1.1.tgz#59ef4bf7e0b3e879186436e8481c06a6c162ca98"
+  integrity sha512-jz+Cfrg9GWOZbQAnDQ4hlVnQky+341Yk5ru8bZSe6sIDTCIg8n9i/u7hSQGSVOF3C7lH6mGtqjkiT9G4wFLL0w==
 
 minimatch@3.0.4, minimatch@^3.0.4:
   version "3.0.4"
