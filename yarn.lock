@@ -42,11 +42,6 @@ argparse@^2.0.1:
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
   integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
 
-async@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
-  integrity sha1-7GphrlZIDAw8skHJVhjiCJL5Zyo=
-
 async@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/async/-/async-3.2.1.tgz#d3274ec66d107a47476a4c49136aacdb00665fc8"
@@ -397,12 +392,12 @@ mocha@^9.1.0:
     yargs-parser "20.2.4"
     yargs-unparser "2.0.0"
 
-mock-db-generator@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/mock-db-generator/-/mock-db-generator-0.0.8.tgz#53a2aa2f06c2ad97150cb51837f96935dfdd7bbb"
-  integrity sha1-U6KqLwbCrZcVDLUYN/lpNd/de7s=
+mock-db-generator@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/mock-db-generator/-/mock-db-generator-0.1.0.tgz#9861f886741262f1683b23157d74ce5af4712f6a"
+  integrity sha512-YYyxjvqIaYjnlGm+gpVjtc3pB2l0QfvzZIP/kegxZp0IBgdiqIQJBNdlw+gJgH9Lf8wLsga9DsAy2+kf18TqOw==
   dependencies:
-    async "^1.5.2"
+    async "^3.2.1"
 
 ms@2.1.2:
   version "2.1.2"

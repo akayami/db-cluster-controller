@@ -76,9 +76,9 @@ module.exports = function (clusterConfig, structureString, dataArray) {
 						}
 						realConn = conn;
 						//console.log(realConn);
+						//console.log(structureString);
 						const mocker = require('mock-db-generator')(
 							realConn,
-							dbname,
 							String(structureString).split(';')
 						);
 						if (dataArray) {
