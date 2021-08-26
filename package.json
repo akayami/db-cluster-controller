@@ -1,6 +1,6 @@
 {
   "name": "db-cluster-controller",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A small controller to create, shutdown and destory db-cluster databases",
   "main": "index.js",
   "scripts": {
